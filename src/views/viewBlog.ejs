@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-xl d-flex flex-column p-3 gap-5">
+      <div style="flex: 2">
+        <h1 class="text-center"><%= blog.title.trim() %></h1>
+        <h2 class="text-center"><%= blog.description.trim() %></h2>
+      </div>
+      <div
+        class="d-flex justify-content-center"
+        style="width: 100%; height: fit-content; flex-grow: 1"
+      >
+        <img
+          src="data:<%= blog.imageMimeType %>;base64,<%= blog.coverimage.toString('base64') %>"
+          class="img-fluid"
+          alt="blog image"
+        />
+      </div>
+      <div class="text-wrap" id="blog-content" style="text-align: justify; flex: 3">
+        <%- blog.content %>
+      </div>
+    </div>
+  </body>
+</html>

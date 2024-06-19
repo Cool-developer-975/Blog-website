@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>Welcome <%= userName %></h1>
+    <a href="/user/blogs/createBlog"
+      ><button class="btn btn-primary" style="margin-right: 30px;">create blog</button>
+    </a>
+    <a href="/blogs">
+      <button class="btn btn-primary">Explore</button>
+    </a>
+    <br>
+    <br>
+    <div class="container-fluid d-flex justify-content-evenly flex-wrap">
+      <% if (blogs.length != 0) { %> <% blogs.forEach(blog => { %>
+
+      <div
+        class="card mb-3"
+        id="blog-<%= blog._id %>"
+        style="max-width: 540px"
+      >
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              src="data:<%= blog.imageMimeType %>;base64,<%= blog.coverimage.toString('base64') %>"
+              class="card-img-top rounded-start"
+              alt="blog image"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <p class="card-text"><%= blog.description %></p>
+              <p class="card-text">
+                <small class="text-muted"
+                  >created at: <%= new
+                  Date(blog.createdAt).toLocaleDateString()%></small
+                >
+              </p>
+              <div class="d-flex gap-3" data-blog="<%= blog._id %>">
+                <button type="button" class="View btn btn-primary">View</button>
+                <button type="button" class="Edit btn btn-secondary">
+                  Edit
+                </button>
+                <button type="button" class="Delete btn btn-danger">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% }); %> <% } %>
+    </div>
+    <script>
+      const viewBtn = document.querySelectorAll(".View");
+      const editBtn = document.querySelectorAll(".Edit");
+      const deleteBtn = document.querySelectorAll(".Delete");
+
+      viewBtn.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const blogId = e.target.parentNode.dataset.blog;
+          location.href = `/user/blogs/viewBlog/${blogId}`;
+        });
+      });
+
+      editBtn.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const blogId = e.target.parentNode.dataset.blog;
+          location.href = `/user/blogs/editBlog/${blogId}`;
+        });
+      });
+
+      deleteBtn.forEach((btn) => {
+        btn.addEventListener("click", async (e) => {
+          const blogId = e.target.parentNode.dataset.blog;
+          const response = await fetch(`/user/blogs/deleteBlog/${blogId}`, {
+            method: "delete",
+          });
+          if (!response.ok) {
+            alert(`${response.statusText}`);
+            return;
+          }
+          const blog = document.querySelector(`#blog-${blogId}`);
+          blog.remove();
+        });
+      });
+    </script>
+  </body>
+</html>

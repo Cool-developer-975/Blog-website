@@ -1,0 +1,49 @@
+<div class="mb-3">
+  <label for="coverimage" class="form-label">Coverimage for blog</label>
+  <input
+    class="form-control"
+    type="file"
+    id="coverimage"
+    name="coverimage"
+    <% if (!edit) { %>
+     required
+    <% } %>
+  />
+</div>
+<div class="mb-3">
+  <label for="title" class="form-label">Title</label>
+  <input
+    type="text"
+    class="form-control"
+    id="title"
+    placeholder="Blog title"
+    name="title"
+    value="<% if ( edit ) { %>
+      <%= (blog.title).trim() %>
+     <% } %>"
+    required
+  />
+</div>
+<div class="mb-3">
+  <label for="description" class="form-label">Description</label>
+  <textarea
+    class="form-control"
+    id="description"
+    rows="3"
+    name="description"
+    required
+  >
+  <% if ( edit ) { %>
+    <%= (blog.description).trim() %>
+   <% } %>
+  </textarea>
+</div>
+<div class="mb-3">
+  <label for="content" class="form-label">Content</label>
+  <textarea class="form-control" id="content" rows="4" name="content" required>
+  <% if ( edit ) { %>
+    <%= (blog.content).trim() %>
+   <% } %>
+</textarea
+  >
+</div>
