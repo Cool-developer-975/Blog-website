@@ -16,7 +16,7 @@ const storage = multer.diskStorage(
 const upload = multer({
     storage,
     fileFilter: function (req, file, cb) {
-        const allowedMimeTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
+        const allowedMimeTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif','image/webp'];
 
         if (!allowedMimeTypes.includes(file.mimetype)) {
             cb(new Error('Invalid image type. Only PNG, JPG, JPEG, and GIF allowed.'));

@@ -46,6 +46,11 @@
                   >created at: <%= new
                   Date(blog.createdAt).toLocaleDateString()%></small
                 >
+                <br>
+                <small class="text-muted"
+                  >updatedAt at: <%= new
+                  Date(blog.updatedAt).toLocaleDateString()%></small
+                >
               </p>
               <div class="d-flex gap-3" data-blog="<%= blog._id %>">
                 <button type="button" class="View btn btn-primary">View</button>
