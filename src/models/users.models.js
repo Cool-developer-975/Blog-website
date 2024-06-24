@@ -24,10 +24,6 @@ const userSchema = new Schema(
             minLength: 12,
             maxLength: 128
         },
-        blogs: [{
-            type: SchemaTypes.ObjectId,
-            ref: 'Blog'
-        }]
     },
     {
         timestamps: true

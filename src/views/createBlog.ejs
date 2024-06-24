@@ -12,7 +12,12 @@
     />
   </head>
   <body>
-    <h1 style="text-align: center">Create a blog</h1>
+    <div class="d-flex justify-content-between container-lg">
+      <h1 style="text-align: center">Create a blog</h1>
+      <a href="/user/dashboard">
+        <button class="btn btn-primary">go back</button>
+      </a>
+    </div>
     <form
       action="/user/blogs/createBlog"
       method="post"
