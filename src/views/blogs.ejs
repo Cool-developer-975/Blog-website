@@ -21,11 +21,11 @@
       </nav>
       <div class="container-lg d-flex flex-column gap-3">
         <h2>Some recent blogs</h2>
-        <div class="container-fluid d-flex flex-wrap" id="container">
+        <div class="container-fluid d-flex gap-3 flex-wrap" id="container">
           <% for( let index = 0; (index < blogs.length); index++ )
           { %>
           
-              <div class="card mb-3" style="max-width: 540px;" onclick="viewBlog(this)" data-id="<%= blogs[index]._id %>">
+              <div class="card mb-3 flex-grow-1" style="flex-basis: 500px;" onclick="viewBlog(this)" data-id="<%= blogs[index]._id %>">
                 <div class="row g-0">
                   <div class="col-md-4">
                     <img
